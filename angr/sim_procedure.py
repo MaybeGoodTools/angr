@@ -223,6 +223,7 @@ class SimProcedure:
 
             # run it
             l.debug("Executing %s%s%s%s%s with %s, %s", *(inst._describe_me() + (sim_args, inst.kwargs)))
+            logging.getLogger("angr.environment").info("In state %s executing SimProcedure.%s(%s)", state, self.display_name, ', '.join(map(str, sim_args)))
             r = getattr(inst, inst.run_func)(*sim_args, **inst.kwargs)
 
         state._inspect(
